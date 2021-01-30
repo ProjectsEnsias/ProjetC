@@ -2,17 +2,17 @@
 <!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
-  <object class="GtkWindow">
+  <object class="GtkWindow" id="mainWindow">
     <property name="can_focus">False</property>
     <property name="default_width">800</property>
     <property name="default_height">600</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="mainGrid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkGrid">
+          <object class="GtkGrid" id="header">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_left">10</property>
@@ -20,7 +20,7 @@
             <property name="margin_bottom">5</property>
             <property name="column_spacing">11</property>
             <child>
-              <object class="GtkButton" id="add">
+              <object class="GtkButton" id="addA">
                 <property name="label" translatable="yes">Ajouter Adhérent</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -32,7 +32,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="AddL">
                 <property name="label" translatable="yes">Ajouter Livre</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -43,9 +43,6 @@
                 <property name="top_attach">0</property>
               </packing>
             </child>
-            <child>
-              <placeholder/>
-            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -54,18 +51,18 @@
           </packing>
         </child>
         <child>
-          <object class="GtkPaned">
+          <object class="GtkPaned" id="panel">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="wide_handle">True</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkBox" id="sideNav">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">12</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="typeL">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_top">6</property>
@@ -79,11 +76,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkViewport">
+                  <object class="GtkViewport" id="radPort">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkBox" id="radGrid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_left">10</property>
@@ -134,7 +131,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="catL">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">            categories            </property>
@@ -146,18 +143,42 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkScrolledWindow">
+                  <object class="GtkScrolledWindow" id="catPort">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkViewport">
+                      <object class="GtkViewport" id="cats">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
-                          <object class="GtkGrid">
+                          <object class="GtkGrid" id="catGrid">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
                             <child>
                               <placeholder/>
                             </child>
@@ -179,22 +200,22 @@
               </packing>
             </child>
             <child>
-              <object class="GtkScrolledWindow">
+              <object class="GtkScrolledWindow" id="listPort">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkViewport">
+                  <object class="GtkViewport" id="list">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkBox" id="listGrid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
                         <property name="spacing">8</property>
                         <child>
-                          <object class="GtkGrid">
+                          <object class="GtkGrid" id="sgrid">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="column_spacing">10</property>
@@ -212,7 +233,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry">
+                              <object class="GtkEntry" id="searchEnt">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="margin_left">24</property>
@@ -231,9 +252,33 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkGrid">
+                          <object class="GtkGrid" id="adhs">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
                             <child>
                               <placeholder/>
                             </child>
