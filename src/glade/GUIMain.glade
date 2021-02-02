@@ -15,7 +15,7 @@
           <object class="GtkGrid" id="header">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">10</property>
+            <property name="margin_start">10</property>
             <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
             <property name="column_spacing">11</property>
@@ -83,7 +83,7 @@
                       <object class="GtkBox" id="radGrid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">10</property>
+                        <property name="margin_start">10</property>
                         <property name="margin_top">10</property>
                         <property name="margin_bottom">10</property>
                         <property name="orientation">vertical</property>
@@ -236,11 +236,43 @@
                               <object class="GtkEntry" id="searchEnt">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="margin_left">24</property>
+                                <property name="margin_start">24</property>
                                 <property name="margin_top">10</property>
                               </object>
                               <packing>
                                 <property name="left_attach">0</property>
+                                <property name="top_attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkRadioButton" id="spec">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">False</property>
+                                <property name="margin_top">5</property>
+                                <property name="active">True</property>
+                                <property name="draw_indicator">True</property>
+                                <property name="group">all</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">3</property>
+                                <property name="top_attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkRadioButton" id="all">
+                                <property name="label" translatable="yes">All</property>
+                                <property name="name">all</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">False</property>
+                                <property name="margin_start">68</property>
+                                <property name="margin_top">5</property>
+                                <property name="active">True</property>
+                                <property name="draw_indicator">True</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">2</property>
                                 <property name="top_attach">0</property>
                               </packing>
                             </child>
