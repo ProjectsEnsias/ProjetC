@@ -34,6 +34,8 @@ GtkWidget *adhs;
 GtkWidget *searchB;
 GtkWidget *searchEnt;
 
+GtkWidget *lables[1000];
+
 
 // les variables et lists utilisés :
 
@@ -41,8 +43,8 @@ list_adherent adhh;
 list_livre livh;
 
 
-int numAdh;
-int numLiv;
+int numAdh = 1;
+int numLiv = 1;
 int adhOuLiv = 1; // 1 si on veut afficher les adherents et 0 sinon.
 
 void ll(GtkButton *b){
@@ -52,8 +54,17 @@ void ll(GtkButton *b){
 int main(int argc,char **argv){
     
     //charger(&numAdh,&adhh,&numLiv,&livh);
-
+    livh = Malloc(livre);
+    livh->info_liv = Malloc(liv_info);
+    sprintf(livh->info_liv->titre_livre,"jkbkjbkjbkjb");
+    livh->info_liv->num_liv = 5;
     gtk_init(&argc,&argv);
+    adhh = Malloc(adherent);
+    adhh->info_adh = Malloc(adh_info);
+    sprintf(adhh->info_adh->email_adh,"farfora@haha.com");
+    sprintf(adhh->info_adh->nom_adh,"hammmiiid");
+    sprintf(adhh->info_adh->prenom_adh,"dhdhdh");
+    adhh->info_adh->nbre_emprunts_adh = 5;
 
     builder = gtk_builder_new_from_file ("./src/glade/GUIMain.glade");
     mainWindow = GTK_WIDGET(gtk_builder_get_object(builder,"mainWindow"));
@@ -79,23 +90,17 @@ int main(int argc,char **argv){
     searchEnt = GTK_WIDGET(gtk_builder_get_object(builder,"searchEnt"));
     ra = GTK_WIDGET(gtk_builder_get_object(builder,"ra"));
     rl = GTK_WIDGET(gtk_builder_get_object(builder,"rl"));
-    int lign = 0;
-    int colon = 2;
-    /*for (int i = 0; i < numButtons; i++)
-    {
-        if(colon == 2){
-            colon = 0;
-            lign++;
-            gtk_grid_insert_row(GTK_GRID(adhs),2*lign);
-        }
-        colon++;
-        buttons[i] = gtk_button_new_with_label(i);
-        gtk_widget_set_hexpand (buttons[i], TRUE);
-        gtk_widget_set_vexpand (buttons[i], TRUE);
-        gtk_widget_set_valign (buttons[i], GTK_ALIGN_CENTER);
-        gtk_widget_set_halign (buttons[i], GTK_ALIGN_CENTER);
-        gtk_grid_attach(GTK_GRID(adhs),buttons[i],i%3,i/3,1,1);
-    }*/
+
+    //affichage :
+    if(adhOuLiv==0){
+        afficher_liv(numLiv,livh,adhs,lables);
+    }
+    else{
+        afficher_adh(numAdh,adhh,adhs,lables);
+    }
+    free(livh->info_liv);
+    free(livh);
+    
     
 
     // signals :
