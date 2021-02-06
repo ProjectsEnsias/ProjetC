@@ -63,6 +63,6 @@ void Rendre_liv(livre*,adherent*);
 
 // ** les fichiers de stockage.
 void charger(int*,list_adherent*,int*,list_livre*);
-void sauvegarder(int,list_adherent,int,listl_livre);
+void sauvegarder(int,list_adherent,int,list_livre);
 
 #endif
