@@ -1,3 +1,4 @@
+
 #ifndef _FONC
 #define _FONC
 #define max(a,b) (a)>(b)?(a):(b)
@@ -48,19 +49,20 @@ typedef livre* list_livre;
 
 // ********* les fonctions :
 // ** Gestion des adhérents :
-
 adherent * modifier_adherent(adherent*,adh_info*);
 list_adherent recherche_adherent(list_adherent,char[]);
 list_adherent ajouter_adherent(list_adherent,adherent*);
 
 // ** Gestion des Livres :
-
 livre * modifier_livre(livre*,liv_info*);
 list_livre recherche_livre(list_livre,char[]);
 
 // ** Gestion des emprunts :
-
 list_adherent adh_empr(list_adherent);
 void Rendre_liv(livre*,adherent*);
+
+// ** les fichiers de stockage.
+void charger(int*,list_adherent*,int*,list_livre*);
+void sauvegarder(int,list_adherent,int,listl_livre);
 
 #endif

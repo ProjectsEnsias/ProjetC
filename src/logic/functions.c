@@ -70,3 +70,44 @@ void Rendre_liv(livre* liv,adherent* emprunteur){
     emprunteur->info_adh->nbre_emprunts_adh-=1;
 }
 
+
+// ** les fichier de stockage.
+
+void charger(int *numAdh,list_adherent *ladh,int *numLiv,list_livre *lliv){
+    list_adherent *tempadh = ladh;
+    list_livre *templiv = lliv;
+    FILE *fAdh,*fLiv;
+    fAdh = fopen("src/donnes/adh_donnes.data","rb");
+    fLiv = fopen("src/donnes/liv_donnes.data","rb");
+    if(fAdh==NULL||fLiv==NULL){
+        exit(1);
+    }
+    else{
+        fread(numAdh,sizeof(int),1,fAdh);
+        while(!feof(fAdh)){
+            
+        }
+    }
+}
+void sauvegarder(int numAdh,list_adherent ladh,int numLiv,list_livre lliv){
+    FILE *fAdh,*fLiv;
+    fAdh = fopen("src/donnes/adh_donnes.data","wb");
+    fLiv = fopen("src/donnes/liv_donnes.data","wb");
+    if(fAdh==NULL||fLiv==NULL){
+        exit(1);
+    }
+    else{
+        fwrite(&numAdh,sizeof(int),1,fAdh);
+        while(ladh!=NULL){
+            fwrite(ladh->info_adh,sizeof(adh_info),1,fAdh);
+        }
+        fclose(fAdh);
+        fwrite(&numLiv,sizeof(int),1,fAdh);
+        while(lliv!=NULL){
+            fwrite(lliv->info_liv,sizeof(liv_info),1,fLiv);
+        }
+        fclose(fLiv);
+    }
+}
+
+
