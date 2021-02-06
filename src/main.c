@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include "../includes/functions.h"
-#include "../includes/mainWidget.h"
 
 //declaration des fenetres:
 
@@ -107,20 +106,10 @@ int main(int argc,char **argv){
     
 
     // signals :
-    // radio buttons : 
-    dd da,dl;
-    da.aol = adhOuLiv;
-    da.num = numAdh;
-    da.la = adhh;
-    da.lab = lables;
-    dl.aol = adhOuLiv;
-    dl.num = numLiv;
-    dl.ll = livh;
-    dl.lab = lables;
-    g_signal_connect(searchB,"clicked",G_CALLBACK(ll),NULL);
+    //g_signal_connect(searchB,"clicked",G_CALLBACK(ll),NULL);
     g_signal_connect(mainWindow,"destroy",G_CALLBACK(destr),NULL);
-    g_signal_connect(rl,"toggled",G_CALLBACK(on_liv_taggeled),&da);
-    g_signal_connect(ra,"toggled",G_CALLBACK(on_adh_taggeled),&dl);
+    g_signal_connect(rl,"toggled",G_CALLBACK(on_liv_taggeled),NULL);
+    g_signal_connect(ra,"toggled",G_CALLBACK(on_adh_taggeled),NULL);
     gtk_builder_connect_signals(builder,NULL);
 
     gtk_widget_show_all(mainWindow);
@@ -139,19 +128,19 @@ void destr(){
     exit(0);
 }
 
-void on_adh_taggeled(GtkRadioButton *b,dd *da){
+void on_adh_taggeled(GtkRadioButton *b){
     gboolean t = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(b));
     if(t){
-        da->aol = 1;
-        afficher_adh(da->num,da->la,da->lab);
+        adhOuLiv = 1;
+        afficher_adh(numAdh,adhh,lables);
     }
     return;
 }
-void on_liv_taggeled(GtkRadioButton *b,dd *dl){
+void on_liv_taggeled(GtkRadioButton *b){
     gboolean t = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(b));
     if(t){
-        dl->aol = 0;
-        afficher_liv(dl->num,dl->ll,dl->lab);
+        adhOuLiv = 0;
+        afficher_liv(numLiv,livh,lables);
         }
     return;
 }
