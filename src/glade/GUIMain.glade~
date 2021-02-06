@@ -2,92 +2,6 @@
 <!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
-  <object class="GtkAboutDialog">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
-    <property name="program_name">Glade</property>
-    <property name="logo_icon_name">image-missing</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
-  <object class="GtkImage">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
-  </object>
   <object class="GtkImage">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -187,7 +101,6 @@
                             <property name="label" translatable="yes">Ajouter</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="image">__glade_unnamed_23</property>
                             <property name="use_stock">False</property>
                           </object>
                         </child>
@@ -196,7 +109,6 @@
                             <property name="label" translatable="yes">Modifier</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="image">__glade_unnamed_24</property>
                             <property name="use_stock">False</property>
                           </object>
                         </child>
@@ -205,7 +117,6 @@
                             <property name="label" translatable="yes">Supprimer</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="image">__glade_unnamed_25</property>
                             <property name="use_stock">False</property>
                           </object>
                         </child>
@@ -214,7 +125,6 @@
                             <property name="label" translatable="yes">Chercher</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="image">__glade_unnamed_26</property>
                             <property name="use_stock">False</property>
                           </object>
                         </child>
@@ -227,9 +137,6 @@
                 <property name="left_attach">0</property>
                 <property name="top_attach">0</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>
@@ -337,7 +244,6 @@
                                 <property name="label" translatable="yes">Emprunter un livre </property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="image">__glade_unnamed_28</property>
                                 <property name="use_stock">False</property>
                               </object>
                             </child>
@@ -346,7 +252,6 @@
                                 <property name="label" translatable="yes">Afficher les livres emprunter</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="image">__glade_unnamed_29</property>
                                 <property name="use_stock">False</property>
                               </object>
                             </child>
@@ -355,16 +260,14 @@
                                 <property name="label" translatable="yes">Afficher les emprunteurs</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="image">__glade_unnamed_30</property>
                                 <property name="use_stock">False</property>
                               </object>
                             </child>
                             <child>
-                              <object class="GtkImageMenuItem">
+                              <object class="GtkImageMenuItem" id="rendre">
                                 <property name="label" translatable="yes">Rendre un  livre</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="image">__glade_unnamed_31</property>
                                 <property name="use_stock">False</property>
                               </object>
                             </child>
@@ -456,6 +359,21 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="column_spacing">10</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
+                            <child>
+                              <placeholder/>
+                            </child>
                             <child>
                               <placeholder/>
                             </child>

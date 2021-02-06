@@ -43,7 +43,7 @@ GtkWidget *supp_a;
 GtkWidget *cherche_a;
 GtkWidget *emprunt;
 GtkWidget *rendre;
-GtkWidget *aj_l;
+/*GtkWidget *aj_l;
 GtkWidget *mo_l;
 GtkWidget *sup_l;
 GtkWidget *ch_l;
@@ -52,7 +52,7 @@ GtkWidget *mo_a;
 GtkWidget *sup_a;
 GtkWidget *ch_a;
 GtkWidget *empr;
-GtkWidget *rendre;
+GtkWidget *rendre;*/
 GtkBuilder *builder2;
 
 
@@ -99,8 +99,8 @@ int main(int argc,char **argv){
 
 
 
-    builder2 = gtk_builder_new_from_file ("./src/glade/windows.glade");
-    builder = gtk_builder_new_from_file ("./src/glade/GUIMain.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
+    builder = gtk_builder_new_from_file ("./glade/GUIMain.glade");
     mainWindow = GTK_WIDGET(gtk_builder_get_object(builder,"mainWindow"));
     mainGrid = GTK_WIDGET(gtk_builder_get_object(builder,"mainGrid"));
     header = GTK_WIDGET(gtk_builder_get_object(builder,"header"));
