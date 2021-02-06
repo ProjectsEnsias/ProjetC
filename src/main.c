@@ -32,7 +32,41 @@ GtkWidget *listGrid;
 GtkWidget *sgrid;
 GtkWidget *adhs;
 GtkWidget *searchB;
-GtkWidget *searchEnt;
+GtkWidget *searchEnt; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // variables et tables utilisés.
 
@@ -40,8 +74,8 @@ GtkWidget *lables[1000];
 int numAdh = 1;
 int numLiv = 1;
 int adhOuLiv = 0; // 1 si on veut afficher les adherents et 0 sinon.
-list_adherent adhh;
-list_livre livh;
+list_adherent ladh;
+list_livre lliv;
 
 //declaration des signaux :
 void destr();
@@ -51,19 +85,33 @@ void afficher_liv(int,list_livre,GtkWidget *lables[1000]);
 void afficher_adh(int,list_adherent,GtkWidget *lables[1000]);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 int main(int argc,char **argv){
-    //charger(&numAdh,&adhh,&numLiv,&livh);
-    livh = Malloc(livre);
-    livh->info_liv = Malloc(liv_info);
-    sprintf(livh->info_liv->titre_livre,"jkbkjbkjbkjb");
-    livh->info_liv->num_liv = 5;
+    //charger(&numAdh,&ladh,&numLiv,&lliv);
+    lliv = Malloc(livre);
+    lliv->info_liv = Malloc(liv_info);
+    sprintf(lliv->info_liv->titre_livre,"jkbkjbkjbkjb");
+    lliv->info_liv->num_liv = 5;
     gtk_init(&argc,&argv);
-    adhh = Malloc(adherent);
-    adhh->info_adh = Malloc(adh_info);
-    sprintf(adhh->info_adh->email_adh,"farfora@haha.com");
-    sprintf(adhh->info_adh->nom_adh,"hammmiiid");
-    sprintf(adhh->info_adh->prenom_adh,"dhdhdh");
-    adhh->info_adh->nbre_emprunts_adh = 5;
+    ladh = Malloc(adherent);
+    ladh->info_adh = Malloc(adh_info);
+    sprintf(ladh->info_adh->email_adh,"farfora@haha.com");
+    sprintf(ladh->info_adh->nom_adh,"hammmiiid");
+    sprintf(ladh->info_adh->prenom_adh,"dhdhdh");
+    ladh->info_adh->nbre_emprunts_adh = 5;
+
+
 
     builder = gtk_builder_new_from_file ("./src/glade/GUIMain.glade");
     mainWindow = GTK_WIDGET(gtk_builder_get_object(builder,"mainWindow"));
@@ -90,6 +138,21 @@ int main(int argc,char **argv){
     ra = GTK_WIDGET(gtk_builder_get_object(builder,"ra"));
     rl = GTK_WIDGET(gtk_builder_get_object(builder,"rl"));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //affichage :
     int i;
     for(i=0;i<1000;i++){
@@ -97,10 +160,10 @@ int main(int argc,char **argv){
         gtk_grid_attach(GTK_GRID(adhs),lables[i],1,i,1,1);
     }
     if(adhOuLiv==0){
-        afficher_liv(numLiv,livh,lables);
+        afficher_liv(numLiv,lliv,lables);
     }
     else{
-        afficher_adh(numAdh,adhh,lables);
+        afficher_adh(numAdh,ladh,lables);
     }
     
     
@@ -112,14 +175,32 @@ int main(int argc,char **argv){
     g_signal_connect(ra,"toggled",G_CALLBACK(on_adh_taggeled),NULL);
     gtk_builder_connect_signals(builder,NULL);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     gtk_widget_show_all(mainWindow);
     
 
     gtk_main();
-    free(livh->info_liv);
-    free(livh);
-    free(adhh->info_adh);
-    free(adhh);
+    free(lliv->info_liv);
+    free(lliv);
+    free(ladh->info_adh);
+    free(ladh);
     return 0;
 }
 
@@ -132,7 +213,7 @@ void on_adh_taggeled(GtkRadioButton *b){
     gboolean t = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(b));
     if(t){
         adhOuLiv = 1;
-        afficher_adh(numAdh,adhh,lables);
+        afficher_adh(numAdh,ladh,lables);
     }
     return;
 }
@@ -140,7 +221,7 @@ void on_liv_taggeled(GtkRadioButton *b){
     gboolean t = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(b));
     if(t){
         adhOuLiv = 0;
-        afficher_liv(numLiv,livh,lables);
+        afficher_liv(numLiv,lliv,lables);
         }
     return;
 }
