@@ -6,6 +6,9 @@
 #define Malloc(type) (type*)malloc(sizeof(type))
 
 
+
+
+
 // ********* les structures:
 
 typedef struct _AUTEUR{
