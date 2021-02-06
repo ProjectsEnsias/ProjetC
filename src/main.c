@@ -156,16 +156,16 @@ int main(int argc,char **argv){
     g_signal_connect(rl,"toggled",G_CALLBACK(on_liv_taggeled),NULL);
     g_signal_connect(ra,"toggled",G_CALLBACK(on_adh_taggeled),NULL);
     gtk_builder_connect_signals(builder,NULL);
-    g_signal_connect(ajout_l,"clicked",G_CALLBACk(al),NULL);
-    g_signal_connect(modif_l,"clicked",G_CALLBACk(mol),NULL);
-    g_signal_connect(supp_l,"clicked",G_CALLBACk(sup_ll),NULL);
-    g_signal_connect(cherche_l,"clicked",G_CALLBACk(ch_ll),NULL);
-    g_signal_connect(ajout_a,"clicked",G_CALLBACk(aa),NULL);
-    g_signal_connect(modif_a,"clicked",G_CALLBACk(moa),NULL);
-    g_signal_connect(supp_a,"clicked",G_CALLBACk(sup_aa),NULL);
-    g_signal_connect(cherche_a,"clicked",G_CALLBACk(ch_aa),NULL);
-    g_signal_connect(emprunt,"clicked",G_CALLBACk(emp_l),NULL);
-    g_signal_connect(randre,"clicked",G_CALLBACk(rend),NULL);
+    g_signal_connect(ajout_l,"clicked",G_CALLBACK(al),NULL);
+    g_signal_connect(modif_l,"clicked",G_CALLBACK(mol),NULL);
+    g_signal_connect(supp_l,"clicked",G_CALLBACK(sup_ll),NULL);
+    g_signal_connect(cherche_l,"clicked",G_CALLBACK(ch_ll),NULL);
+    g_signal_connect(ajout_a,"clicked",G_CALLBACK(aa),NULL);
+    g_signal_connect(modif_a,"clicked",G_CALLBACK(moa),NULL);
+    g_signal_connect(supp_a,"clicked",G_CALLBACK(sup_aa),NULL);
+    g_signal_connect(cherche_a,"clicked",G_CALLBACK(ch_aa),NULL);
+    g_signal_connect(emprunt,"clicked",G_CALLBACK(emp_l),NULL);
+    g_signal_connect(rendre,"clicked",G_CALLBACK(rend),NULL);
       
 
     gtk_widget_show_all(mainWindow);
@@ -428,7 +428,7 @@ void ch_ll(GtkWidget *widget,gpointer data){
     GtkWidget *tlc;
     GtkWidget *clc1;
     GtkWidget *ch1;
-    GtkWidjet *tlc1;
+    GtkWidget *tlc1;
 
     ch_l = GTK_WIDGET(gtk_builder_get_object(builder2,"ch_l"));
     g8 = GTK_WIDGET(gtk_builder_get_object(builder2,"g8"));
@@ -449,7 +449,7 @@ void emp_l(GtkWidget *widget,gpointer data){
     GtkWidget *nle;
     GtkWidget *nae1;
     GtkWidget *nle1;
-    GtkWidjet *emp;
+    GtkWidget *emp;
 
     empr = GTK_WIDGET(gtk_builder_get_object(builder2,"empr"));
     g9 = GTK_WIDGET(gtk_builder_get_object(builder2,"g9"));
