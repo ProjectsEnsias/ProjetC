@@ -181,6 +181,7 @@ int main(int argc,char **argv){
 
 // code des signaux:
 void destr(){
+    
     exit(0);
 }
 
