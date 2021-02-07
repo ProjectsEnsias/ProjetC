@@ -101,6 +101,7 @@ void ch_ll(GtkWidget *widget,gpointer data);
 void emp_l(GtkWidget *widget,gpointer data);
 void rend(GtkWidget *widget,gpointer data);
 void on_ch2_clicked(GtkButton *,gpointer ent);
+void css_init();
 
 
 int main(int argc,char **argv){
@@ -108,6 +109,7 @@ int main(int argc,char **argv){
     charger(&numAdh,&(ladh),&numLiv,&(lliv));
 
     gtk_init(&argc,&argv);
+    css_init();
 
 
     builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
@@ -147,6 +149,9 @@ int main(int argc,char **argv){
     rendre = GTK_WIDGET(gtk_builder_get_object(builder,"rendre"));
     afle = GTK_WIDGET(gtk_builder_get_object(builder,"afle"));
     afe = GTK_WIDGET(gtk_builder_get_object(builder,"afe"));
+
+    gtk_window_set_title(GTK_WINDOW(mainWindow),"Prêt des livres");
+    gtk_container_set_border_width(GTK_CONTAINER(mainWindow),8);
 
     //affichage :
     int i;
@@ -535,4 +540,162 @@ void on_afe_select(GtkImageMenuItem *widget,gpointer data){
 void on_afle_select(GtkImageMenuItem *widget,gpointer data){
     llemp = recherche_livres_emptuntes(lliv,&numLEmp);
     afficher_liv(numLEmp,llemp,lables);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void css_init(){
+    GtkCssProvider *provider;
+	GdkDisplay *display;
+	GdkScreen *screen;
+    provider = gtk_css_provider_new ();
+	display = gdk_display_get_default ();
+	screen = gdk_display_get_default_screen (display);
+	gtk_style_context_add_provider_for_screen (screen,GTK_STYLE_PROVIDER(provider),GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	gsize bytes_written, bytes_read;
+	const gchar* home = "./styles/style.css";
+	GError *error = 0;
+	gtk_css_provider_load_from_path (provider,g_filename_to_utf8(home, strlen(home), &bytes_read, &bytes_written, &error),NULL);
+    g_object_unref (provider);
 }
