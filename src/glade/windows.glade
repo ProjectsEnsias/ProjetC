@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="aj_a">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Ajouter un adhérant</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkGrid" id="g2">
         <property name="visible">True</property>
@@ -141,13 +138,13 @@
         </child>
       </object>
     </child>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </object>
   <object class="GtkWindow" id="aj_l">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Ajouter un livre</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkGrid" id="g1">
         <property name="visible">True</property>
@@ -273,20 +270,25 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkWindow" id="ch_a">
-    <property name="can_focus">False</property>
     <child type="titlebar">
       <placeholder/>
     </child>
+  </object>
+  <object class="GtkWindow" id="ch_a">
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkGrid" id="g7">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_start">8</property>
+        <property name="margin_end">8</property>
+        <property name="margin_top">3</property>
+        <property name="margin_bottom">3</property>
         <child>
           <object class="GtkLabel" id="nac">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_end">3</property>
             <property name="label" translatable="yes">Nom d'adhérant :</property>
           </object>
           <packing>
@@ -310,6 +312,10 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="margin_start">8</property>
+            <property name="margin_end">8</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
           </object>
           <packing>
             <property name="left_attach">1</property>
@@ -321,16 +327,20 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkWindow" id="ch_l">
-    <property name="can_focus">False</property>
     <child type="titlebar">
       <placeholder/>
     </child>
+  </object>
+  <object class="GtkWindow" id="ch_l">
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkGrid" id="g8">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_start">8</property>
+        <property name="margin_end">8</property>
+        <property name="margin_top">3</property>
+        <property name="margin_bottom">3</property>
         <child>
           <object class="GtkLabel" id="clc">
             <property name="visible">True</property>
@@ -369,6 +379,10 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="margin_start">8</property>
+            <property name="margin_end">8</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
           </object>
           <packing>
             <property name="left_attach">1</property>
@@ -390,12 +404,12 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkWindow" id="empr">
-    <property name="can_focus">False</property>
     <child type="titlebar">
       <placeholder/>
     </child>
+  </object>
+  <object class="GtkWindow" id="empr">
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkGrid" id="g9">
         <property name="visible">True</property>
@@ -459,13 +473,13 @@
         </child>
       </object>
     </child>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </object>
   <object class="GtkWindow" id="mo_a">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Modifier un adhérant</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkGrid" id="g6">
         <property name="visible">True</property>
@@ -592,13 +606,13 @@
         </child>
       </object>
     </child>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </object>
   <object class="GtkWindow" id="mo_l">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">modifier un livre</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkGrid" id="g5">
         <property name="visible">True</property>
@@ -712,12 +726,12 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkWindow" id="rendre">
-    <property name="can_focus">False</property>
     <child type="titlebar">
       <placeholder/>
     </child>
+  </object>
+  <object class="GtkWindow" id="rendre">
+    <property name="can_focus">False</property>
     <child>
       <object class="GtkGrid" id="g10">
         <property name="visible">True</property>
@@ -760,13 +774,13 @@
         </child>
       </object>
     </child>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </object>
   <object class="GtkWindow" id="sup_a">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Supprimer un adhérant</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkGrid" id="g4">
         <property name="visible">True</property>
@@ -809,13 +823,13 @@
         </child>
       </object>
     </child>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </object>
   <object class="GtkWindow" id="sup_l">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Suppriner un livre</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkGrid" id="g3">
         <property name="visible">True</property>
@@ -857,6 +871,9 @@
           <placeholder/>
         </child>
       </object>
+    </child>
+    <child type="titlebar">
+      <placeholder/>
     </child>
   </object>
 </interface>

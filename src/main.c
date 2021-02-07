@@ -22,7 +22,7 @@ GtkWidget *catL;
 GtkWidget *catPort;
 GtkWidget *radGrid;
 GtkWidget *ra;
-GtkWidget *rl;
+GtkWidget *rl; 
 GtkWidget *all;
 GtkWidget *spec;
 GtkWidget *cats;
@@ -43,6 +43,13 @@ GtkWidget *supp_a;
 GtkWidget *cherche_a;
 GtkWidget *emprunt;
 GtkWidget *rendre;
+GtkWidget *ch_a;
+GtkWidget *ch_l;
+GtkWidget *tlc1;
+GtkWidget *clc1;
+GtkWidget *nac1;
+GtkWidget *afle;
+GtkWidget *afe;
 /*GtkWidget *aj_l;
 GtkWidget *mo_l;
 GtkWidget *sup_l;
@@ -62,10 +69,22 @@ GtkWidget *lables[1000];
 int numAdh = 1;
 int numLiv = 1;
 int adhOuLiv = 0; // 1 si on veut afficher les adherents et 0 sinon.
+int numAffiche = 1;
+int numRAdh = 0;
+int numRLiv = 0;
+int numEmp = 0;
+int numLEmp = 0;
 list_adherent ladh;
 list_livre lliv;
+list_adherent lradh;
+list_livre lrliv;
+list_adherent lemp;
+list_livre llemp;
 
 //declaration des signaux :
+void on_ch1_clicked(GtkButton *,gpointer ent);
+void on_afe_select(GtkWidget *widget,gpointer data);
+void on_afle_select(GtkWidget *widget,gpointer data);
 void destr();
 void on_adh_taggeled(GtkRadioButton *);
 void on_liv_taggeled(GtkRadioButton *);
@@ -81,28 +100,12 @@ void ch_aa(GtkWidget *widget,gpointer data);
 void ch_ll(GtkWidget *widget,gpointer data);
 void emp_l(GtkWidget *widget,gpointer data);
 void rend(GtkWidget *widget,gpointer data);
+void on_ch2_clicked(GtkButton *,gpointer ent);
 
 
 int main(int argc,char **argv){
-    ladh = Malloc(adherent);
-    lliv = Malloc(livre);
-    ladh->next = NULL;
-    lliv->next = NULL;
-    /*lliv = Malloc(livre);
-    lliv->next = NULL;
-    lliv->info_liv = Malloc(liv_info);
-    sprintf(lliv->info_liv->titre_livre,"jkbkjbkjbkjb");
-    lliv->info_liv->num_liv = 5;
-    ladh = Malloc(adherent);
-    ladh->next = NULL;
-    ladh->info_adh = Malloc(adh_info);
-    sprintf(ladh->info_adh->email_adh,"farfora@haha.com");
-    sprintf(ladh->info_adh->nom_adh,"hammmiiid");
-    sprintf(ladh->info_adh->prenom_adh,"dhdhdh");
-    ladh->info_adh->nbre_emprunts_adh = 5;*/
-    charger(&numAdh,&(ladh->next),&numLiv,&(lliv->next));
-    ladh = ladh->next;
-    lliv = lliv->next;
+
+    charger(&numAdh,&(ladh),&numLiv,&(lliv));
 
     gtk_init(&argc,&argv);
 
@@ -174,6 +177,8 @@ int main(int argc,char **argv){
     g_signal_connect(cherche_a,"activate",G_CALLBACK(ch_aa),NULL);
     g_signal_connect(emprunt,"activate",G_CALLBACK(emp_l),NULL);
     g_signal_connect(rendre,"activate",G_CALLBACK(rend),NULL);
+    g_signal_connect(afle,"select",G_CALLBACK(on_afle_select),NULL);
+    g_signal_connect(afe,"select",G_CALLBACK(on_afe_select),NULL);
       
 
     gtk_widget_show_all(mainWindow);
@@ -189,7 +194,7 @@ int main(int argc,char **argv){
 
 // code des signaux:
 void destr(){
-    //sauvegarder(numAdh,ladh,numLiv,lliv);
+    sauvegarder(numAdh,ladh,numLiv,lliv);
     exit(0);
 }
 
@@ -227,13 +232,22 @@ void afficher_liv(int numLiv,list_livre head,GtkWidget *lables[1000]){
         temp = strcat(temp,"Numéro de livre : ");
         sprintf(temp1,"%d\n",head->info_liv->num_liv);
         temp = strcat(temp,temp1);
-        temp = strcat(temp,"Numéro de l'emprunteur : ");
-        sprintf(temp1,"%d\n",head->info_liv->emprunteur_liv);
-        temp = strcat(temp,temp1);
+        if(head->info_liv->emprunteur_liv!=-1){
+            temp = strcat(temp,"Numéro de l'emprunteur : ");
+            sprintf(temp1,"%d\n",head->info_liv->emprunteur_liv);
+            temp = strcat(temp,temp1);
+        }
+        else{
+            temp = strcat(temp,"Pas Emprunté\n");
+        }
         temp = strcat(temp,"___________________________________________________________________________________________\n\n");
         gtk_label_set_text(GTK_LABEL(lables[i]),temp);
         p = p->next;
     }
+    for(i = numLiv;i<numAffiche;i++){
+         gtk_label_set_text(GTK_LABEL(lables[i]),"");
+    }
+    numAffiche = numLiv;
     free(temp);
     free(temp1);
 }
@@ -259,6 +273,10 @@ void afficher_adh(int numAdh,list_adherent head,GtkWidget *lables[1000]){
         gtk_label_set_text(GTK_LABEL(lables[i]),temp);
         p = p->next;
     }
+    for(i = numAdh;i<numAffiche;i++){
+         gtk_label_set_text(GTK_LABEL(lables[i]),"");
+    }
+    numAffiche = numAdh;
     free(temp);
     free(temp1);
 }
@@ -414,9 +432,7 @@ void moa(GtkWidget *widget,gpointer data){
 }
 void ch_aa(GtkWidget *widget,gpointer data){
     builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
-    GtkWidget *ch_a;
     GtkWidget *g7;
-    GtkWidget *nac1;
     GtkWidget *nac;
     GtkWidget *ch1;
 
@@ -425,27 +441,34 @@ void ch_aa(GtkWidget *widget,gpointer data){
     nac1 = GTK_WIDGET(gtk_builder_get_object(builder2,"nac1"));
     nac = GTK_WIDGET(gtk_builder_get_object(builder2,"nac"));
     ch1 = GTK_WIDGET(gtk_builder_get_object(builder2,"ch1"));
+
+    // signal pour le button chercher :
+
+    g_signal_connect(ch1,"clicked",G_CALLBACK(on_ch1_clicked),NULL);
     
     
     gtk_widget_show_all(ch_a);
 }
+
 void ch_ll(GtkWidget *widget,gpointer data){
     builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
-    GtkWidget *ch_l;
     GtkWidget *g8;
     GtkWidget *clc;
     GtkWidget *tlc;
-    GtkWidget *clc1;
-    GtkWidget *ch1;
-    GtkWidget *tlc1;
+    GtkWidget *ch2;
 
     ch_l = GTK_WIDGET(gtk_builder_get_object(builder2,"ch_l"));
     g8 = GTK_WIDGET(gtk_builder_get_object(builder2,"g8"));
     clc = GTK_WIDGET(gtk_builder_get_object(builder2,"clc"));
     tlc = GTK_WIDGET(gtk_builder_get_object(builder2,"tlc"));
     clc1 = GTK_WIDGET(gtk_builder_get_object(builder2,"clc1"));
-    ch1 = GTK_WIDGET(gtk_builder_get_object(builder2,"ch1"));
+    ch2 = GTK_WIDGET(gtk_builder_get_object(builder2,"ch2"));
     tlc1 = GTK_WIDGET(gtk_builder_get_object(builder2,"tlc1"));
+
+    // signal pour le button chercher :
+    
+    g_signal_connect(ch2,"clicked",G_CALLBACK(on_ch2_clicked),NULL);
+
     
     
     gtk_widget_show_all(ch_l);
@@ -487,4 +510,28 @@ void rend(GtkWidget *widget,gpointer data){
     
     
     gtk_widget_show_all(rendre);
+}
+void on_ch1_clicked(GtkButton *b,gpointer ent){
+    const gchar * textEnt = gtk_entry_get_text (GTK_ENTRY(nac1));
+    char *nom = (char*)textEnt;
+    lradh = recherche_adherent(ladh,nom,&numRAdh);
+    afficher_adh(numRAdh,lradh,lables);
+    gtk_window_close(GTK_WINDOW(ch_a));
+}
+void on_ch2_clicked(GtkButton *b,gpointer ent){
+    const gchar * textEnt1 = gtk_entry_get_text (GTK_ENTRY(clc1));
+    const gchar * textEnt2 = gtk_entry_get_text (GTK_ENTRY(tlc1));
+    char *cat = (char*)textEnt1;
+    char *tit = (char*)textEnt2;
+    lrliv = recherche_livre(lliv,cat,tit,&numRLiv);
+    afficher_liv(numRLiv,lrliv,lables);
+    gtk_window_close(GTK_WINDOW(ch_l));
+}
+void on_afe_select(GtkWidget *widget,gpointer data){
+    lemp = recherche_emprenteurs(ladh,&numEmp);
+    afficher_adh(numEmp,lemp,lables);
+}
+void on_afle_select(GtkWidget *widget,gpointer data){
+    llemp = recherche_livres_emptuntes(lliv,&numLEmp);
+    afficher_liv(numLEmp,llemp,lables);
 }
