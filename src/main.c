@@ -84,19 +84,27 @@ void rend(GtkWidget *widget,gpointer data);
 
 
 int main(int argc,char **argv){
-    //charger(&numAdh,&ladh,&numLiv,&lliv);
+    ladh = Malloc(adherent);
     lliv = Malloc(livre);
+    ladh->next = NULL;
+    lliv->next = NULL;
+    /*lliv = Malloc(livre);
+    lliv->next = NULL;
     lliv->info_liv = Malloc(liv_info);
     sprintf(lliv->info_liv->titre_livre,"jkbkjbkjbkjb");
     lliv->info_liv->num_liv = 5;
-    gtk_init(&argc,&argv);
     ladh = Malloc(adherent);
+    ladh->next = NULL;
     ladh->info_adh = Malloc(adh_info);
     sprintf(ladh->info_adh->email_adh,"farfora@haha.com");
     sprintf(ladh->info_adh->nom_adh,"hammmiiid");
     sprintf(ladh->info_adh->prenom_adh,"dhdhdh");
-    ladh->info_adh->nbre_emprunts_adh = 5;
+    ladh->info_adh->nbre_emprunts_adh = 5;*/
+    charger(&numAdh,&(ladh->next),&numLiv,&(lliv->next));
+    ladh = ladh->next;
+    lliv = lliv->next;
 
+    gtk_init(&argc,&argv);
 
 
     builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
@@ -181,7 +189,7 @@ int main(int argc,char **argv){
 
 // code des signaux:
 void destr(){
-    
+    //sauvegarder(numAdh,ladh,numLiv,lliv);
     exit(0);
 }
 

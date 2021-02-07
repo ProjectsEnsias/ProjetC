@@ -74,40 +74,72 @@ void Rendre_liv(livre* liv,adherent* emprunteur){
 // ** les fichier de stockage.
 
 void charger(int *numAdh,list_adherent *ladh,int *numLiv,list_livre *lliv){
-    list_adherent *tempadh = ladh;
-    list_livre *templiv = lliv;
+    int i = 0;
+    list_adherent tempadh = (*ladh);
+    list_livre templiv = (*lliv);
     FILE *fAdh,*fLiv;
-    fAdh = fopen("src/donnes/adh_donnes.data","rb");
-    fLiv = fopen("src/donnes/liv_donnes.data","rb");
+    fAdh = fopen("./donnes/adh_donnes.data","rb");
+    fLiv = fopen("./donnes/liv_donnes.data","rb");
     if(fAdh==NULL||fLiv==NULL){
         exit(1);
     }
     else{
         fread(numAdh,sizeof(int),1,fAdh);
-        while(!feof(fAdh)){
-            
+        while(!feof(fAdh)&&i<*numAdh){
+            tempadh = Malloc(adherent);
+            tempadh->info_adh = Malloc(adh_info);
+            tempadh->next = NULL;
+            fread(tempadh->info_adh,sizeof(adh_info),1,fAdh);
+            tempadh = tempadh->next;
+            i++;
         }
+        fclose(fAdh);
+        printf("kjdfk  %d \n ",(*ladh)->info_adh->nbre_emprunts_adh);
+        fread(numLiv,sizeof(int),1,fLiv);
+        while(!feof(fLiv)){
+            i = 0;
+            templiv = Malloc(livre);
+            templiv->info_liv = Malloc(liv_info);
+            templiv->next = NULL;
+            fread(templiv->info_liv,sizeof(adh_info),1,fLiv);
+            templiv = templiv->next;
+            i++;
+        }
+        fclose(fLiv);
     }
 }
 void sauvegarder(int numAdh,list_adherent ladh,int numLiv,list_livre lliv){
     FILE *fAdh,*fLiv;
-    fAdh = fopen("src/donnes/adh_donnes.data","wb");
-    fLiv = fopen("src/donnes/liv_donnes.data","wb");
-    if(fAdh==NULL||fLiv==NULL){
+    fAdh = fopen("donnes/adh_donnes.data","wb");
+    if(fAdh==NULL){
         exit(1);
     }
     else{
         fwrite(&numAdh,sizeof(int),1,fAdh);
         while(ladh!=NULL){
             fwrite(ladh->info_adh,sizeof(adh_info),1,fAdh);
+            ladh = ladh->next;
         }
         fclose(fAdh);
-        fwrite(&numLiv,sizeof(int),1,fAdh);
+    }
+    fLiv = fopen("donnes/liv_donnes.data","wb");
+    if(fLiv==NULL){
+        exit(1);
+    }
+    else{
+        fwrite(&numLiv,sizeof(int),1,fLiv);
         while(lliv!=NULL){
-            fwrite(lliv->info_liv,sizeof(liv_info),1,fLiv);
+            fwrite(&(lliv->info_liv->num_liv),sizeof(int),1,fLiv);
+            fwrite(lliv->info_liv->titre_livre,20*sizeof(char),1,fLiv);
+            fwrite(lliv->info_liv->categ_liv,30*sizeof(char),1,fLiv);
+            fwrite(&(lliv->info_liv->emprunteur_liv),sizeof(int),1,fLiv);
+            fwrite(&(lliv->info_liv->auteur_liv),sizeof(auteur),1,fLiv);
+            lliv = lliv->next;
         }
         fclose(fLiv);
     }
+    return;
 }
+
 
 
