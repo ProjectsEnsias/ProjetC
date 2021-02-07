@@ -83,8 +83,8 @@ list_livre llemp;
 
 //declaration des signaux :
 void on_ch1_clicked(GtkButton *,gpointer ent);
-void on_afe_select(GtkWidget *widget,gpointer data);
-void on_afle_select(GtkWidget *widget,gpointer data);
+void on_afe_select(GtkImageMenuItem *widget,gpointer data);
+void on_afle_select(GtkImageMenuItem *widget,gpointer data);
 void destr();
 void on_adh_taggeled(GtkRadioButton *);
 void on_liv_taggeled(GtkRadioButton *);
@@ -145,6 +145,8 @@ int main(int argc,char **argv){
     cherche_a = GTK_WIDGET(gtk_builder_get_object(builder,"cherche_a"));
     emprunt= GTK_WIDGET(gtk_builder_get_object(builder,"emprunt_l"));
     rendre = GTK_WIDGET(gtk_builder_get_object(builder,"rendre"));
+    afle = GTK_WIDGET(gtk_builder_get_object(builder,"afle"));
+    afe = GTK_WIDGET(gtk_builder_get_object(builder,"afe"));
 
     //affichage :
     int i;
@@ -162,7 +164,6 @@ int main(int argc,char **argv){
     
 
     // signals :
-    //g_signal_connect(searchB,"clicked",G_CALLBACK(ll),NULL);
     g_signal_connect(mainWindow,"destroy",G_CALLBACK(destr),NULL);
     g_signal_connect(rl,"toggled",G_CALLBACK(on_liv_taggeled),NULL);
     g_signal_connect(ra,"toggled",G_CALLBACK(on_adh_taggeled),NULL);
@@ -177,8 +178,8 @@ int main(int argc,char **argv){
     g_signal_connect(cherche_a,"activate",G_CALLBACK(ch_aa),NULL);
     g_signal_connect(emprunt,"activate",G_CALLBACK(emp_l),NULL);
     g_signal_connect(rendre,"activate",G_CALLBACK(rend),NULL);
-    g_signal_connect(afle,"select",G_CALLBACK(on_afle_select),NULL);
-    g_signal_connect(afe,"select",G_CALLBACK(on_afe_select),NULL);
+    g_signal_connect(afle,"activate",G_CALLBACK(on_afle_select),NULL);
+    g_signal_connect(afe,"activate",G_CALLBACK(on_afe_select),NULL);
       
 
     gtk_widget_show_all(mainWindow);
@@ -527,11 +528,11 @@ void on_ch2_clicked(GtkButton *b,gpointer ent){
     afficher_liv(numRLiv,lrliv,lables);
     gtk_window_close(GTK_WINDOW(ch_l));
 }
-void on_afe_select(GtkWidget *widget,gpointer data){
+void on_afe_select(GtkImageMenuItem *widget,gpointer data){
     lemp = recherche_emprenteurs(ladh,&numEmp);
     afficher_adh(numEmp,lemp,lables);
 }
-void on_afle_select(GtkWidget *widget,gpointer data){
+void on_afle_select(GtkImageMenuItem *widget,gpointer data){
     llemp = recherche_livres_emptuntes(lliv,&numLEmp);
     afficher_liv(numLEmp,llemp,lables);
 }

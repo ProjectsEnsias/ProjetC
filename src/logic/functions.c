@@ -43,7 +43,7 @@ list_adherent recherche_emprenteurs(list_adherent tete,int* num){
     adherent *r = list_res;
     *num = 0;
     while(p->next!=NULL){
-        if(!p->info_adh->nbre_emprunts_adh>0){ // càd si nom == inf_adh->nom_adh :
+        if(p->info_adh->nbre_emprunts_adh>0){ // càd si nom == inf_adh->nom_adh :
             if(r!=NULL){
                 (*num)++;
                 r->info_adh = p->info_adh;
@@ -145,25 +145,26 @@ list_livre recherche_livres_emptuntes(list_livre tete,int* num){
     list_livre list_res = Malloc(livre); // list_res est la liste des livres ayant la catégorie recherché.
     livre *p = tete;
     livre *r = list_res;
-        while((p->next!=NULL)){
-            if(p->info_liv->emprunteur_liv!=-1){
-                if(r!=NULL){
-                    (*num)++;
-                    r->info_liv = p->info_liv;
-                    r->next = NULL;
-                    r->next = Malloc(livre);
-                    r = r->next;
-                    p = p->next;
-                }
-                else{
-                    printf("erreur!! pas d'espace memoire.");
-                    exit(1);
-                }
+    while((p->next!=NULL)){
+        if((p->info_liv->emprunteur_liv)>-1){
+            if(r!=NULL){
+                (*num)++;
+                r->info_liv = p->info_liv;
+                r->next = NULL;
+                r->next = Malloc(livre);
+                  r = r->next;
+                p = p->next;
             }
             else{
-                p = p->next;
-            } 
+                printf("erreur!! pas d'espace memoire.");
+                exit(1);
+            }
         }
+        else{
+            p = p->next;
+        } 
+    }
+    return list_res;
 }
 
 // ** Gestion des emprunts :

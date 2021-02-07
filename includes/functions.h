@@ -50,12 +50,14 @@ typedef livre* list_livre;
 // ********* les fonctions :
 // ** Gestion des adhérents :
 adherent * modifier_adherent(adherent*,adh_info*);
-list_adherent recherche_adherent(list_adherent,char[]);
+list_adherent recherche_adherent(list_adherent,char[],int*);
 list_adherent ajouter_adherent(list_adherent,adherent*);
+list_adherent recherche_emprenteurs(list_adherent,int*);
 
 // ** Gestion des Livres :
 livre * modifier_livre(livre*,liv_info*);
-list_livre recherche_livre(list_livre,char[]);
+list_livre recherche_livre(list_livre,char[],char[] , int*);
+list_livre recherche_livres_emptuntes(list_livre,int*);
 
 // ** Gestion des emprunts :
 list_adherent adh_empr(list_adherent);
