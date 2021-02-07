@@ -51,14 +51,17 @@ typedef livre* list_livre;
 // ** Gestion des adhérents :
 adherent * modifier_adherent(adherent*,adh_info*);
 list_adherent recherche_adherent(list_adherent,char[]);
-list_adherent ajouter_adherent(list_adherent,adherent*);
+list_adherent ajouter_adherent(list_adherent,adh_info*);
+livre* ajouter_livre(livre* ptr,liv_info* new_liv);
+adherent* supprimes_adherent(adherent* ptr,int code);
 
 // ** Gestion des Livres :
 livre * modifier_livre(livre*,liv_info*);
 list_livre recherche_livre(list_livre,char[]);
+livre* supprimes_livre(livre* ptr,int code);
 
 // ** Gestion des emprunts :
-list_adherent adh_empr(list_adherent);
+void enprunter_livre(adherent* ptra,livre* ptrl,int codea,int codel);
 void Rendre_liv(livre*,adherent*);
 
 // ** les fichiers de stockage.
