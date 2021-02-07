@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkWindow" id="mainWindow">
     <property name="can_focus">False</property>
     <property name="default_width">800</property>
     <property name="default_height">600</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkBox" id="mainGrid">
         <property name="visible">True</property>
@@ -234,7 +231,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkImageMenuItem">
+                              <object class="GtkImageMenuItem" id="afle">
                                 <property name="label" translatable="yes">Afficher les livres emprunter</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
@@ -242,7 +239,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkImageMenuItem">
+                              <object class="GtkImageMenuItem" id="afe">
                                 <property name="label" translatable="yes">Afficher les emprunteurs</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
@@ -435,6 +432,9 @@
           </packing>
         </child>
       </object>
+    </child>
+    <child type="titlebar">
+      <placeholder/>
     </child>
   </object>
 </interface>
