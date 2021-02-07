@@ -105,23 +105,23 @@ int main(int argc,char **argv){
     mainGrid = GTK_WIDGET(gtk_builder_get_object(builder,"mainGrid"));
     header = GTK_WIDGET(gtk_builder_get_object(builder,"header"));
     panel = GTK_WIDGET(gtk_builder_get_object(builder,"panel"));
-    all = GTK_WIDGET(gtk_builder_get_object(builder,"all"));
-    spec = GTK_WIDGET(gtk_builder_get_object(builder,"spec"));
-    addA = GTK_WIDGET(gtk_builder_get_object(builder,"addA"));
-    addL = GTK_WIDGET(gtk_builder_get_object(builder,"addL"));
+  //  file = GTK_WIDGET(gtk_builder_get_object(builder,"file"));
+   // f1 = GTK_WIDGET(gtk_builder_get_object(builder,"f1"));
+   // ff1 = GTK_WIDGET(gtk_builder_get_object(builder,"ff1"));
+    //f2 = GTK_WIDGET(gtk_builder_get_object(builder,"addL"));
     sideNav = GTK_WIDGET(gtk_builder_get_object(builder,"sideNav"));
     listPort = GTK_WIDGET(gtk_builder_get_object(builder,"listPort"));
     listGrid = GTK_WIDGET(gtk_builder_get_object(builder,"listGrid"));
-    sgrid = GTK_WIDGET(gtk_builder_get_object(builder,"sgrid"));
+   // ff2 = GTK_WIDGET(gtk_builder_get_object(builder,"ff2"));
     adhs = GTK_WIDGET(gtk_builder_get_object(builder,"adhs"));
     radPort = GTK_WIDGET(gtk_builder_get_object(builder,"radPort"));
-    searchB = GTK_WIDGET(gtk_builder_get_object(builder,"searchB"));
-    catL = GTK_WIDGET(gtk_builder_get_object(builder,"catL"));
+   // searchB = GTK_WIDGET(gtk_builder_get_object(builder,"searchB"));
+    //catL = GTK_WIDGET(gtk_builder_get_object(builder,"catL"));
     catPort = GTK_WIDGET(gtk_builder_get_object(builder,"catPort"));
     radGrid = GTK_WIDGET(gtk_builder_get_object(builder,"radGrid"));
     list = GTK_WIDGET(gtk_builder_get_object(builder,"list"));
     typeL = GTK_WIDGET(gtk_builder_get_object(builder,"typeL"));
-    searchEnt = GTK_WIDGET(gtk_builder_get_object(builder,"searchEnt"));
+    //searchEnt = GTK_WIDGET(gtk_builder_get_object(builder,"searchEnt"));
     ra = GTK_WIDGET(gtk_builder_get_object(builder,"ra"));
     rl = GTK_WIDGET(gtk_builder_get_object(builder,"rl"));
     ajout_l = GTK_WIDGET(gtk_builder_get_object(builder,"ajout_l"));
@@ -132,7 +132,7 @@ int main(int argc,char **argv){
     modif_a = GTK_WIDGET(gtk_builder_get_object(builder,"modif_a"));
     supp_a = GTK_WIDGET(gtk_builder_get_object(builder,"supp_a"));
     cherche_a = GTK_WIDGET(gtk_builder_get_object(builder,"cherche_a"));
-    emprunt = GTK_WIDGET(gtk_builder_get_object(builder,"emprunter_l"));
+    emprunt= GTK_WIDGET(gtk_builder_get_object(builder,"emprunt_l"));
     rendre = GTK_WIDGET(gtk_builder_get_object(builder,"rendre"));
 
     //affichage :
@@ -156,16 +156,16 @@ int main(int argc,char **argv){
     g_signal_connect(rl,"toggled",G_CALLBACK(on_liv_taggeled),NULL);
     g_signal_connect(ra,"toggled",G_CALLBACK(on_adh_taggeled),NULL);
     gtk_builder_connect_signals(builder,NULL);
-    g_signal_connect(ajout_l,"clicked",G_CALLBACK(al),NULL);
-    g_signal_connect(modif_l,"clicked",G_CALLBACK(mol),NULL);
-    g_signal_connect(supp_l,"clicked",G_CALLBACK(sup_ll),NULL);
-    g_signal_connect(cherche_l,"clicked",G_CALLBACK(ch_ll),NULL);
-    g_signal_connect(ajout_a,"clicked",G_CALLBACK(aa),NULL);
-    g_signal_connect(modif_a,"clicked",G_CALLBACK(moa),NULL);
-    g_signal_connect(supp_a,"clicked",G_CALLBACK(sup_aa),NULL);
-    g_signal_connect(cherche_a,"clicked",G_CALLBACK(ch_aa),NULL);
-    g_signal_connect(emprunt,"clicked",G_CALLBACK(emp_l),NULL);
-    g_signal_connect(rendre,"clicked",G_CALLBACK(rend),NULL);
+    g_signal_connect(ajout_l,"activate",G_CALLBACK(al),NULL);
+    g_signal_connect(modif_l,"activate",G_CALLBACK(mol),NULL);
+    g_signal_connect(supp_l,"activate",G_CALLBACK(sup_ll),NULL);
+    g_signal_connect(cherche_l,"activate",G_CALLBACK(ch_ll),NULL);
+    g_signal_connect(ajout_a,"activate",G_CALLBACK(aa),NULL);
+    g_signal_connect(modif_a,"activate",G_CALLBACK(moa),NULL);
+    g_signal_connect(supp_a,"activate",G_CALLBACK(sup_aa),NULL);
+    g_signal_connect(cherche_a,"activate",G_CALLBACK(ch_aa),NULL);
+    g_signal_connect(emprunt,"activate",G_CALLBACK(emp_l),NULL);
+    g_signal_connect(rendre,"activate",G_CALLBACK(rend),NULL);
       
 
     gtk_widget_show_all(mainWindow);
@@ -254,7 +254,7 @@ void afficher_adh(int numAdh,list_adherent head,GtkWidget *lables[1000]){
     free(temp1);
 }
 void al(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file ("./src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *aj_l;
     GtkWidget *g1;
     GtkWidget *nl1;
@@ -281,7 +281,7 @@ void al(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(aj_l);
 }
 void aa(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file (".src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *aj_a;
     GtkWidget *g2;
     GtkWidget *na;
@@ -312,7 +312,7 @@ void aa(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(aj_a);
 }
 void sup_ll(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file (".src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *sup_l;
     GtkWidget *g3;
     GtkWidget *nls1;
@@ -329,7 +329,7 @@ void sup_ll(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(sup_l);
 }
 void sup_aa(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file (".src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *sup_a;
     GtkWidget *g4;
     GtkWidget *nas1;
@@ -346,7 +346,7 @@ void sup_aa(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(sup_a);
 }
 void mol(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file ("./src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *mo_l;
     GtkWidget *g5;
     GtkWidget *nl3;
@@ -373,7 +373,7 @@ void mol(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(mo_l);
 }
 void moa(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file (".src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *mo_a;
     GtkWidget *g6;
     GtkWidget *na2;
@@ -404,7 +404,7 @@ void moa(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(mo_a);
 }
 void ch_aa(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file (".src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *ch_a;
     GtkWidget *g7;
     GtkWidget *nac1;
@@ -421,7 +421,7 @@ void ch_aa(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(ch_a);
 }
 void ch_ll(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file (".src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *ch_l;
     GtkWidget *g8;
     GtkWidget *clc;
@@ -442,7 +442,7 @@ void ch_ll(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(ch_l);
 }
 void emp_l(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file (".src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *empr;
     GtkWidget *g9;
     GtkWidget *nae;
@@ -463,7 +463,7 @@ void emp_l(GtkWidget *widget,gpointer data){
     gtk_widget_show_all(empr);
 }
 void rend(GtkWidget *widget,gpointer data){
-    builder2 = gtk_builder_new_from_file (".src/glade/windows.glade");
+    builder2 = gtk_builder_new_from_file ("./glade/windows.glade");
     GtkWidget *rendre;
     GtkWidget *g10;
     GtkWidget *nlr;
