@@ -34,16 +34,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
-                          <object class="GtkImageMenuItem" id="ajout_l">
-                            <property name="label" translatable="yes">Ajouter</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="use_stock">False</property>
-                          </object>
-                        </child>
-                        <child>
                           <object class="GtkImageMenuItem" id="modif_l">
-                            <property name="label" translatable="yes">Modifier</property>
+                            <property name="label" translatable="yes">Ajouter/Modifier</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="use_stock">False</property>
@@ -80,16 +72,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
-                          <object class="GtkImageMenuItem" id="ajout_a">
-                            <property name="label" translatable="yes">Ajouter</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="use_stock">False</property>
-                          </object>
-                        </child>
-                        <child>
                           <object class="GtkImageMenuItem" id="modif_a">
-                            <property name="label" translatable="yes">Modifier</property>
+                            <property name="label" translatable="yes">Ajouter/Modifier</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="use_stock">False</property>
@@ -329,6 +313,7 @@
                 <property name="shadow_type">in</property>
                 <child>
                   <object class="GtkViewport" id="list">
+                    <property name="name">list</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -378,6 +363,7 @@
                         </child>
                         <child>
                           <object class="GtkGrid" id="adhs">
+                            <property name="name">listGrid</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
