@@ -1,9 +1,40 @@
+*{
+    font-weight: 900;
+    font-family: monospace;
+}
+
+#main{
+    background-image: url("../images/books.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
 #list{
-    padding : 1.5em;
-    font-size: 1.3em;
-    border: solid 7px;
-    border-color: rgb(2, 94, 56);
+    font-size: 1.5em;
+    border: solid 3px;
+    border-color: rgb(3, 114, 66);
+    border-radius: 10px;
 }
 #listGrid{
-    background-image: linear-gradient(to right,);
+    padding: 10px;
+}
+#listport{
+    border-radius: 10px;
+    background-image: linear-gradient(to right,rgba(172, 236, 172, 0.288),rgba(0, 255, 0, 0.295));
+    border: solid 3px;
+    border-color: rgb(3, 114, 66);
+    color: rgb(153, 61, 0);
+}
+#side{
+    border-radius: 10px;
+    background-image: linear-gradient(to right,rgba(172, 236, 172, 0.384),rgba(0, 255, 0, 0.308));
+    border: solid 3px;
+    border-color: rgb(3, 114, 66);
+}
+#emp,#top{
+    padding: 10px;
+    margin: 0;
+    border: solid 3px;
+    border-color: rgba(3, 114, 66, 0.329);
+    background-color: rgba(103, 167, 103, 0.171);
 }

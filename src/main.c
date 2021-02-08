@@ -262,7 +262,7 @@ void afficher_liv(int numLiv,list_livre head,GtkWidget *lables[1000]){
         else{
             temp = strcat(temp,"Pas Emprunté\n");
         }
-        temp = strcat(temp,"___________________________________________________________________________________________\n\n");
+        temp = strcat(temp,"_________________________________________\n\n");
         gtk_label_set_text(GTK_LABEL(lables[i]),temp);
         p = p->next;
     }
@@ -291,7 +291,7 @@ void afficher_adh(int numAdh,list_adherent head,GtkWidget *lables[1000]){
         temp = strcat(temp,"\n");
         sprintf(temp1,"nombre d'emprunts : %d\n",head->info_adh->nbre_emprunts_adh);
         temp = strcat(temp,temp1);
-        temp = strcat(temp,"___________________________________________________________________________________________\n\n");
+        temp = strcat(temp,"_________________________________________\n\n");
         gtk_label_set_text(GTK_LABEL(lables[i]),temp);
         p = p->next;
     }
@@ -600,7 +600,6 @@ int sauva(GtkWidget *widget,gpointer data){
 
          }
     }
-    printf("dfjkdjkfj\n");
     ladh=ajouter_adherent(ladh,b);
     gtk_window_close(GTK_WINDOW(mo_a));
     return 0;

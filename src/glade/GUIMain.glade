@@ -3,6 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <object class="GtkWindow" id="mainWindow">
+    <property name="name">main</property>
     <property name="can_focus">False</property>
     <property name="default_width">800</property>
     <property name="default_height">600</property>
@@ -13,6 +14,7 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkGrid" id="header">
+            <property name="name">top</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_start">10</property>
@@ -119,6 +121,7 @@
             <property name="wide_handle">True</property>
             <child>
               <object class="GtkBox" id="sideNav">
+                <property name="name">side</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
@@ -194,12 +197,16 @@
                 </child>
                 <child>
                   <object class="GtkMenuBar" id="emp">
+                    <property name="name">emp</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkMenuItem" id="empp">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_start">43</property>
+                        <property name="margin_end">30</property>
+                        <property name="hexpand">True</property>
                         <property name="label" translatable="yes">Emprunter</property>
                         <property name="use_underline">True</property>
                         <child type="submenu">
@@ -308,6 +315,7 @@
             </child>
             <child>
               <object class="GtkScrolledWindow" id="listPort">
+                <property name="name">listport</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="shadow_type">in</property>
@@ -322,45 +330,6 @@
                         <property name="can_focus">False</property>
                         <property name="orientation">vertical</property>
                         <property name="spacing">8</property>
-                        <child>
-                          <object class="GtkGrid" id="sgrid">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="column_spacing">10</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
                         <child>
                           <object class="GtkGrid" id="adhs">
                             <property name="name">listGrid</property>
