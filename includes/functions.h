@@ -54,7 +54,7 @@ list_adherent recherche_adherent(list_adherent,char[],int*);
 list_adherent ajouter_adherent(list_adherent,adh_info*);
 list_adherent recherche_emprenteurs(list_adherent,int*);
 int test_vide(adherent*);
-adherent* supprimes_adherent(adherent*,int);
+adherent* supprimes_adherent(adherent*,int,int*,livre**);
 
 // ** Gestion des Livres :
 livre * modifier_livre(livre*,liv_info*);
@@ -62,15 +62,19 @@ list_livre recherche_livre(list_livre,char[],char[] , int*);
 list_livre recherche_livres_emptuntes(list_livre,int*);
 int test_videl(livre* );
 livre* ajouter_livre(livre*,liv_info*);
-livre* supprimes_livre(livre* ,int);
+livre* supprimes_livre(livre* ,int,int*);
 
 // ** Gestion des emprunts :
-void enprunter_livre(adherent* ,livre* ,int ,int );
-void Rendre_liv(livre*,adherent*);
+void enprunter_livre(adherent** ,livre** ,int ,int );
+void rendre_liv(livre**,int,adherent**);
 
 
-// ** les fichiers de stockage.
+// ** les fichiers de stockage :
 void charger(int*,list_adherent*,int*,list_livre*);
 void sauvegarder(int,list_adherent,int,list_livre);
+
+// **libération de la mémoire :
+void clear_list_adh(adherent**);
+void clear_list_liv(livre**);
 
 #endif
