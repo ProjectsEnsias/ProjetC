@@ -1,6 +1,6 @@
 *{
     font-weight: 900;
-    font-family: monospace;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #main{
@@ -12,7 +12,7 @@
 #list{
     font-size: 1.5em;
     border: solid 3px;
-    border-color: rgb(3, 114, 66);
+    border-color: rgb(114, 62, 3);
     border-radius: 10px;
 }
 #listGrid{
@@ -20,21 +20,21 @@
 }
 #listport{
     border-radius: 10px;
-    background-image: linear-gradient(to right,rgba(172, 236, 172, 0.288),rgba(0, 255, 0, 0.295));
+    background-image: linear-gradient(to right,rgba(212, 181, 43, 0.473),rgba(240, 3, 3, 0.493));
     border: solid 3px;
-    border-color: rgb(3, 114, 66);
-    color: rgb(153, 61, 0);
+    border-color: rgb(114, 62, 3);
+    color: rgb(92, 2, 2);
 }
 #side{
     border-radius: 10px;
-    background-image: linear-gradient(to right,rgba(172, 236, 172, 0.384),rgba(0, 255, 0, 0.308));
+    background-image: linear-gradient(to right,rgba(212, 181, 43, 0.205),rgba(248, 41, 41, 0.384));
     border: solid 3px;
-    border-color: rgb(3, 114, 66);
+    border-color: rgb(114, 20, 3);
 }
 #emp,#top{
     padding: 10px;
     margin: 0;
     border: solid 3px;
-    border-color: rgba(3, 114, 66, 0.329);
-    background-color: rgba(103, 167, 103, 0.171);
+    border-color: rgba(114, 34, 3, 0.329);
+    background-color: rgba(167, 121, 103, 0.171);
 }

@@ -68,38 +68,53 @@ int test_vide(adherent* li){
     }
 }
 adherent* ajouter_adherent(adherent* ptr,adh_info* new_adh){
-    adherent* p;
-    p=(adherent*)malloc(sizeof(adherent));
+    adherent* p  = Malloc(adherent);
     p->info_adh=new_adh;
     if(ptr==NULL){
-         p->next=NULL;
-         return p;
+        adherent* c = Malloc(adherent);
+        c->next = NULL;
+        p->next=c;
+        return p;
     }
-    p->next=ptr->next;
+    p->next=ptr;
     return p;
 }
-adherent* supprimes_adherent(adherent* ptr,int code){
-    adherent* p;
-    p=ptr;
-    if (p->info_adh->num_adh==code){
-        ptr=p->next;
-        free(p);
+adherent* supprimes_adherent(adherent* ptr,int code,int* numAdh,livre** ptrl){
+    livre *l = (*ptrl);
+    while(l->next!=NULL){
+        if(l->info_liv->emprunteur_liv==code){
+            l->info_liv->emprunteur_liv = -1;
+        }
+        l = l->next;
+    }
+    if(ptr->next==NULL) return ptr;
+    if (ptr->info_adh->num_adh==code){
+        ptr=ptr->next;
+        (*numAdh)--;
         return ptr;
     }
+    adherent* p;
+    p=ptr;
     while(p->next->info_adh->num_adh!=code && p->next->next!=NULL){
         p=p->next;
     }
     if (p->next->next!=NULL){
         adherent* c=p->next;
         p->next=p->next->next;
+        (*numAdh)--;
         free(c);
         return ptr;
     }
     else{
-        adherent* c=p->next;
-        p->next=NULL;
-        free(c);
-        return ptr;
+        if(p->next->info_adh->num_adh!=code){
+            return ptr;
+        }
+        else{
+            (*numAdh)--;
+            free(p->next);
+            p->next = NULL;
+            return ptr;
+        }
     }
 }
 
@@ -213,24 +228,26 @@ int test_videl(livre* li){
     }
 }
 livre* ajouter_livre(livre* ptr,liv_info* new_liv){
-    livre* p;
-    p=(livre*)malloc(sizeof(livre));
+    livre* p = Malloc(livre);
     p->info_liv=new_liv;
     if (ptr==NULL){
-        p->next=NULL;
+        livre* c = Malloc(livre);
+        c->next = NULL;
+        p->next=c;
         return p;
     }
-    p->next=ptr->next;
+    p->next=ptr;
     return p;
 }
-livre* supprimes_livre(livre* ptr,int code){
-    livre* p;
-    p=ptr;
-    if (p->info_liv->num_liv==code){
-        ptr=p->next;
-        free(p);
+livre* supprimes_livre(livre* ptr,int code,int *numLiv){
+    if(ptr->next==NULL) return ptr;
+    if (ptr->info_liv->num_liv==code){
+        ptr=ptr->next;
+        (*numLiv)--;
         return ptr;
     }
+    livre* p;
+    p=ptr;
     while(p->next->info_liv->num_liv!=code && p->next->next!=NULL){
         p=p->next;
     }
@@ -238,38 +255,64 @@ livre* supprimes_livre(livre* ptr,int code){
         livre* c=p->next;
         p->next=p->next->next;
         free(c);
+        (*numLiv)--;
         return ptr;
     }
     else{
-        livre* c=p->next;
-        p->next=NULL;
-        free(c);
-        return ptr;
+        if(p->next->info_liv->num_liv!=code){
+            return ptr;
+        }
+        else{
+            (*numLiv)--;
+            free(p->next);
+            p->next = NULL;
+            return ptr;
+        }
     }
 }
 
 // ** Gestion des emprunts :
 
-void Rendre_liv(livre* liv,adherent* emprunteur){
-    liv->info_liv->emprunteur_liv = 0;
-    emprunteur->info_adh->nbre_emprunts_adh-=1;
-}
-void enprunter_livre(adherent* ptra,livre* ptrl,int codea,int codel){
-    adherent* a;
-    a=ptra;
-    while(a->info_adh->num_adh!=codea){
-        a=a->next;
-    }
-    if(a->info_adh->nbre_emprunts_adh>=3){
-        printf("tu ne peux pas emprunter un autre livre");
-        exit(EXIT_FAILURE);
-    }
+void rendre_liv(livre** ptrl,int codel,adherent** ptra){
     livre* l;
-    l=ptrl;
-    while(l->info_liv->num_liv!=codel){
+    l=(*ptrl);
+    while((l->info_liv->num_liv!=codel)&&(l->next->next!=NULL)){
         l=l->next;
     }
-    l->info_liv->emprunteur_liv=codea;
+    if(l->info_liv->num_liv!=codel) return;
+    int codea = l->info_liv->emprunteur_liv;
+    l->info_liv->emprunteur_liv = -1;
+    adherent* a;
+    a=(*ptra);
+    while((a->info_adh->num_adh!=codea)&&(a->next->next!=NULL)){
+        a=a->next;
+    }
+    if(a->info_adh->num_adh!=codea) return;
+    if(a->info_adh->nbre_emprunts_adh<=0){
+        return;
+    }
+    (a->info_adh->nbre_emprunts_adh)--;
+    return;
+}
+void enprunter_livre(adherent** ptra,livre** ptrl,int codea,int codel){
+    adherent* a;
+    a=(*ptra);
+    while((a->info_adh->num_adh!=codea)&&(a->next->next!=NULL)){
+        a=a->next;
+    }
+    if(a->info_adh->num_adh!=codea) return;
+    if(a->info_adh->nbre_emprunts_adh>=3){
+        return;
+    }
+    livre* l;
+    l=(*ptrl);
+    while((l->info_liv->num_liv!=codel)&&(l->next->next!=NULL)){
+        l=l->next;
+    }
+    if(l->info_liv->num_liv!=codel) return;
+    if(l->info_liv->emprunteur_liv != a->info_adh->num_adh) {   (a->info_adh->nbre_emprunts_adh)++;} 
+    l->info_liv->emprunteur_liv = a->info_adh->num_adh;
+    return;
 }
 
 // ** les fichier de stockage.
@@ -297,12 +340,12 @@ void charger(int *numAdh,list_adherent *ladh,int *numLiv,list_livre *lliv){
             tempadh = tempadh->next;
             i++;
         }
+        i = 0;
         fclose(fAdh);
         fread(numLiv,sizeof(int),1,fLiv);
-        while(!feof(fLiv)){
-            i = 0;
+        while(!feof(fLiv)&&i<*numLiv){
             templiv->info_liv = Malloc(liv_info);
-            fread(templiv->info_liv,sizeof(adh_info),1,fLiv);
+            fread(templiv->info_liv,sizeof(liv_info),1,fLiv);
             templiv->next = Malloc(livre);
             templiv = templiv->next;
             i++;

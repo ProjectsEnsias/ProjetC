@@ -648,7 +648,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="al3">
+          <object class="GtkEntry" id="anl3">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
           </object>
@@ -697,12 +697,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="al2">
+          <object class="GtkLabel" id="anl2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_top">10</property>
             <property name="margin_bottom">10</property>
-            <property name="label" translatable="yes">Auteur de Livre :</property>
+            <property name="label" translatable="yes">Nom de l'auteur : </property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -715,6 +715,27 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="apl2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Prénom de l'auteur : </property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="apl3">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
           </object>
           <packing>
             <property name="left_attach">1</property>

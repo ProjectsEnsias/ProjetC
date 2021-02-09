@@ -238,7 +238,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkImageMenuItem" id="rendre">
+                              <object class="GtkImageMenuItem" id="rendrei">
                                 <property name="label" translatable="yes">Rendre un  livre</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
