@@ -280,6 +280,7 @@ void rendre_liv(livre** ptrl,int codel,adherent** ptra){
         l=l->next;
     }
     if(l->info_liv->num_liv!=codel) return;
+    if(l->info_liv->emprunteur_liv==-1) return;
     int codea = l->info_liv->emprunteur_liv;
     l->info_liv->emprunteur_liv = -1;
     adherent* a;
@@ -315,7 +316,7 @@ void enprunter_livre(adherent** ptra,livre** ptrl,int codea,int codel){
     return;
 }
 
-// ** les fichier de stockage.
+// ** les fichier de stockage :
 
 void charger(int *numAdh,list_adherent *ladh,int *numLiv,list_livre *lliv){
     int i = 0;
@@ -382,5 +383,24 @@ void sauvegarder(int numAdh,list_adherent ladh,int numLiv,list_livre lliv){
     return;
 }
 
+// ** libération de la mémoire :
 
+void clear_list_adh(adherent** ladh){
+    if((*ladh)->next==NULL){
+        free((*ladh));
+        return;
+    }
+    clear_list_adh(&((*ladh)->next));
+    free((*ladh));
+    return;
+}
+void clear_list_liv(livre** lliv){
+    if((*lliv)->next==NULL){
+        free((*lliv));
+        return;
+    }
+    clear_list_liv(&((*lliv)->next));
+    free((*lliv));
+    return;
+}
 

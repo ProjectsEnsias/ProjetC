@@ -40,7 +40,6 @@ GtkWidget *modif_a;
 GtkWidget *supp_a;
 GtkWidget *cherche_a;
 GtkWidget *emprunt;
-GtkWidget *rendre;
 GtkWidget *ch_a;
 GtkWidget *ch_l;
 GtkWidget *tlc1;
@@ -124,7 +123,6 @@ void emp_l(GtkWidget *widget,gpointer data);
 void rend(GtkWidget *widget,gpointer data);
 void on_ch2_clicked(GtkButton *,gpointer ent);
 void css_init();
-int powInt(int x, int y);
 int parseInt(char* chars);
 void sauva(GtkWidget *widget,gpointer data);
 void sauv(GtkWidget *widget,gpointer data);
@@ -224,6 +222,9 @@ int main(int argc,char **argv){
 // code des signaux:
 void destr(){
     sauvegarder(numAdh,ladh,numLiv,lliv);
+
+    clear_list_adh(&ladh);
+    clear_list_liv(&lliv);
     exit(0);
 }
 
@@ -249,7 +250,7 @@ void afficher_liv(int numLiv,list_livre head,GtkWidget *lables[1000]){
     char *temp = (char*)malloc(1000*sizeof(char));
     char *temp1 = (char*)malloc(50*sizeof(char));
     for(i=0;i<numLiv;i++){
-        sprintf(temp,"titre : %s\n",pp->info_liv->titre_livre);
+        sprintf(temp,"Titre : %s\n",pp->info_liv->titre_livre);
         temp = strcat(temp,"Auteur : - Prénom : ");
         temp = strcat(temp,pp->info_liv->auteur_liv.prenom_aut);
         temp = strcat(temp,"\n              - Nom : ");
@@ -267,7 +268,7 @@ void afficher_liv(int numLiv,list_livre head,GtkWidget *lables[1000]){
             temp = strcat(temp,temp1);
         }
         else{
-            temp = strcat(temp,"Pas Emprunté\n");
+            temp = strcat(temp,"N'est pas Emprunté\n");
         }
         temp = strcat(temp,"_________________________________________\n\n");
         gtk_label_set_text(GTK_LABEL(lables[i]),temp);
@@ -293,13 +294,13 @@ void afficher_adh(int numAdh,list_adherent head,GtkWidget *lables[1000]){
         temp = strcat(temp,"Nom : ");
         temp = strcat(temp,pp->info_adh->nom_adh);
         temp = strcat(temp,"\n");
-        temp = strcat(temp,"émail : ");
+        temp = strcat(temp,"Email : ");
         temp = strcat(temp,pp->info_adh->email_adh);
         temp = strcat(temp,"\n");
         temp = strcat(temp,"Address : ");
         temp = strcat(temp,pp->info_adh->adress_adh);
         temp = strcat(temp,"\n");
-        sprintf(temp1,"nombre d'emprunts : %d\n",pp->info_adh->nbre_emprunts_adh);
+        sprintf(temp1,"Nombre d'emprunts : %d\n",pp->info_adh->nbre_emprunts_adh);
         temp = strcat(temp,temp1);
         temp = strcat(temp,"_________________________________________\n\n");
         gtk_label_set_text(GTK_LABEL(lables[i]),temp);
@@ -320,6 +321,8 @@ void sup_ll(GtkWidget *widget,gpointer data){
     GtkWidget *sup;
 
     sup_l = GTK_WIDGET(gtk_builder_get_object(builder2,"sup_l"));
+    gtk_window_set_title(GTK_WINDOW(sup_l),"Supprimer un livre");
+    
     g3 = GTK_WIDGET(gtk_builder_get_object(builder2,"g3"));
     nls1 = GTK_WIDGET(gtk_builder_get_object(builder2,"nls1"));
     nls = GTK_WIDGET(gtk_builder_get_object(builder2,"nls"));
@@ -336,6 +339,9 @@ void sup_aa(GtkWidget *widget,gpointer data){
     GtkWidget *sup1;
 
     sup_a = GTK_WIDGET(gtk_builder_get_object(builder2,"sup_a"));
+
+    gtk_window_set_title(GTK_WINDOW(sup_a),"Supprimer un Adhérent");
+
     g4 = GTK_WIDGET(gtk_builder_get_object(builder2,"g4"));
     nas1 = GTK_WIDGET(gtk_builder_get_object(builder2,"nas1"));
     nas = GTK_WIDGET(gtk_builder_get_object(builder2,"nas"));
@@ -355,6 +361,9 @@ void mol(GtkWidget *widget,gpointer data){
     GtkWidget *al2;
     GtkWidget *sau;
     mo_l = GTK_WIDGET(gtk_builder_get_object(builder2,"mo_l"));
+
+    gtk_window_set_title(GTK_WINDOW(mo_l),"Ajouter/Modifier un livre");
+
     g5 = GTK_WIDGET(gtk_builder_get_object(builder2,"g5"));
     nl3 = GTK_WIDGET(gtk_builder_get_object(builder2,"nl3"));
     tl3 = GTK_WIDGET(gtk_builder_get_object(builder2,"tl3"));
@@ -386,6 +395,9 @@ void moa(GtkWidget *widget,gpointer data){
     GtkWidget *sau1;
     
     mo_a = GTK_WIDGET(gtk_builder_get_object(builder2,"mo_a"));
+
+    gtk_window_set_title(GTK_WINDOW(mo_a),"Ajouter/Modifier un Adherent");
+
     g6 = GTK_WIDGET(gtk_builder_get_object(builder2,"g6"));
     na2 = GTK_WIDGET(gtk_builder_get_object(builder2,"na2"));
     noa2 = GTK_WIDGET(gtk_builder_get_object(builder2,"noa2"));
@@ -409,6 +421,9 @@ void ch_aa(GtkWidget *widget,gpointer data){
     GtkWidget *ch1;
 
     ch_a = GTK_WIDGET(gtk_builder_get_object(builder2,"ch_a"));
+
+    gtk_window_set_title(GTK_WINDOW(ch_a),"Chercher des adherents");
+
     g7 = GTK_WIDGET(gtk_builder_get_object(builder2,"g7"));
     nac1 = GTK_WIDGET(gtk_builder_get_object(builder2,"nac1"));
     nac = GTK_WIDGET(gtk_builder_get_object(builder2,"nac"));
@@ -430,6 +445,9 @@ void ch_ll(GtkWidget *widget,gpointer data){
     GtkWidget *ch2;
 
     ch_l = GTK_WIDGET(gtk_builder_get_object(builder2,"ch_l"));
+
+    gtk_window_set_title(GTK_WINDOW(ch_l),"Chercher des livres");
+
     g8 = GTK_WIDGET(gtk_builder_get_object(builder2,"g8"));
     clc = GTK_WIDGET(gtk_builder_get_object(builder2,"clc"));
     tlc = GTK_WIDGET(gtk_builder_get_object(builder2,"tlc"));
@@ -455,6 +473,9 @@ void emp_l(GtkWidget *widget,gpointer data){
     GtkWidget *emp;
 
     empr = GTK_WIDGET(gtk_builder_get_object(builder2,"empr"));
+
+    gtk_window_set_title(GTK_WINDOW(empr),"Emprunter un livre");
+
     g9 = GTK_WIDGET(gtk_builder_get_object(builder2,"g9"));
     nae = GTK_WIDGET(gtk_builder_get_object(builder2,"nae"));
     nle = GTK_WIDGET(gtk_builder_get_object(builder2,"nle"));
@@ -477,6 +498,8 @@ void rend(GtkWidget *widget,gpointer data){
     nlr = GTK_WIDGET(gtk_builder_get_object(builder2,"nlr"));
     nlr1 = GTK_WIDGET(gtk_builder_get_object(builder2,"nlr1"));
     ren = GTK_WIDGET(gtk_builder_get_object(builder2,"ren"));
+
+    gtk_window_set_title(GTK_WINDOW(rendre),"Rendre un livre");
     
     g_signal_connect(ren,"clicked",G_CALLBACK(on_ren_clicked),NULL);
     
@@ -506,24 +529,10 @@ void on_afle_select(GtkImageMenuItem *widget,gpointer data){
     llemp = recherche_livres_emptuntes(lliv,&numLEmp);
     afficher_liv(numLEmp,llemp,lables);
 }
-int powInt(int x, int y)
-{
-    for (int i = 0; i < y; i++)
-    {
-        x = 10;
-    }
+int parseInt(char *chars){
+    int x;
+    x = atoi(chars);
     return x;
-}
-int parseInt(char *chars)
-{
-    int sum = 0;
-    int len = strlen(chars);
-    for (int x = 0; x < len; x++)
-    {
-        int n = chars[len - (x + 1)] - '0';
-        sum = sum + powInt(n, x);
-    }
-    return sum;
 }
 void sauva(GtkWidget *widget,gpointer data){
     na3=GTK_WIDGET(gtk_builder_get_object(builder2,"na3"));
